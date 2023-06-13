@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open Colonyy Tile Data Editor</title>
+    <link href="css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/tile_data.js"></script>
+    <script type="text/javascript" src="js/tile_data_state.js"></script>
+    <script type="text/javascript" src="js/upload.js"></script>
+    <script type="text/javascript" src="js/download.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </head>
+  <body>
+  Tile data editor <br>
+   <form>
+     <label for="upload_resources">resources file: </label><input type="file" id="upload_resources" onchange="loadResourcesTable();"> <br>
+     <label for="upload_tile_data">tile data file: </label><input type="file" id="upload_tile_data" onchange="loadTileDataState();"> <br>
+     <!-- <button type="button" onclick="loadTileDataState();" >LOAD FILE</button>  -->
+     <button type="button" onclick="saveTileDataState()" >SAVE FILE</button>
+     <button type="button" onclick=" setup_and_reset();">LOAD DEFAULT/EMPTY</button>
+   </form>
+  <template id="tiles_build_on_table_template_html">
+    <label for="tile_to_build_on"></label>
+    <input style="width:3em;" type="checkbox" name="tile_to_build_on" onchange="loadTileDataStateFromUI();"> 
+  </template>
+  <template id="resources_table">
+    <label for="resource"></label>
+    <input style="width:3em;" type="number" name="resource" value="0" min="0" max="255" onchange="loadTileDataStateFromUI();"> 
+  </template>
+  <div id = "tile_data_template">
+     <span>Tile Name:</span>
+     <input type="text" class="tile_name_html" value="VOID" onchange="loadTileDataStateFromUI();">
+     <!-- <span class="tile_name_html">NULL</span> -->
+     <p>Tiles it can be byuild on</p>
+     <p id="tiles_it_can_be_build_on"></p>
+     <p>Resources required to  build</p>
+     <p id="resources_required_to_build"></p>
+     <p>Resources cconsyumed per tick</p>
+     <p id="resources_consumed_per_tic"></p>
+     <p>Resources produced per tick</p>
+     <p id="resources_produced_per_tic"></p>
+  </div>
+  <form id="tile_data_form">
+ 
+    </form>
+        <script type="text/javascript">
+        function codeAddress() {
+            fill_tile_data_template();
+            setup_and_reset();
+        }
+        window.onload = codeAddress;
+        </script>
+  </body>
+
+</html>
